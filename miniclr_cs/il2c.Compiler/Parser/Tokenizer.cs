@@ -220,6 +220,7 @@ namespace il2c.Compiler.Parser
 			"virtual",
 			"void",
 			"volatile",
+			"where",
 			"while",
 			"yield",
 		};

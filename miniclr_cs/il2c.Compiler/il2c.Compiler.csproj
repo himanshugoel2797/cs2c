@@ -45,6 +45,9 @@
     <Compile Include="C\CodeGenerator.cs" />
     <Compile Include="Parser\Tokenizer.cs" />
     <Compile Include="Parser\Lexer.cs" />
+    <Compile Include="AST\ProgramNode.cs" />
+    <Compile Include="AST\UsingNode.cs" />
+    <Compile Include="AST\NamespaceNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
