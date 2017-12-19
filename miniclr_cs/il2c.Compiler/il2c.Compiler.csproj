@@ -30,16 +30,6 @@
   <ItemGroup>
     <Compile Include="MyClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AST\Assembly.cs" />
-    <Compile Include="AST\Assemblies.cs" />
-    <Compile Include="AST\TypeDef.cs" />
-    <Compile Include="AST\TypeRef.cs" />
-    <Compile Include="AST\MethodDef.cs" />
-    <Compile Include="AST\FieldDef.cs" />
-    <Compile Include="AST\Visibility.cs" />
-    <Compile Include="AST\Argument.cs" />
-    <Compile Include="AST\NamedArgument.cs" />
-    <Compile Include="AST\AttributeDef.cs" />
     <Compile Include="ASTBuilder.cs" />
     <Compile Include="ICodeGenerator.cs" />
     <Compile Include="C\CodeGenerator.cs" />
@@ -48,6 +38,7 @@
     <Compile Include="AST\ProgramNode.cs" />
     <Compile Include="AST\UsingNode.cs" />
     <Compile Include="AST\NamespaceNode.cs" />
+    <Compile Include="AST\TRefNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

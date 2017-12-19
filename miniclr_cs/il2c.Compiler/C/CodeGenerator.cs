@@ -3,7 +3,7 @@ using System.Text;
 using System.Reflection;
 using System.Collections.Generic;
 
-namespace il2c.Compiler.C1
+namespace il2c.Compiler.C
 {
 	public class CodeGenerator : ICodeGenerator
 	{

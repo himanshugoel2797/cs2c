@@ -69,6 +69,11 @@ namespace il2c.Compiler.Parser
 	public struct Token {
 		public TokenType Type { get; set; }
 		public string Value { get; set; }
+
+		public override string ToString ()
+		{
+			return string.Format ("[Token: Type={0}, Value={1}]", Type, Value);
+		}
 	}
 
 	public class Tokenizer
@@ -252,6 +257,7 @@ namespace il2c.Compiler.Parser
 						ws_v += code [cursor].ToString();
 						cursor++;
 					}
+					cursor -= ws_v.Length;
 					tkn = new Token () {
 						Type = TokenType.Whitespace,
 						Value = ws_v
@@ -293,6 +299,7 @@ namespace il2c.Compiler.Parser
 									v += code [cursor];
 									cursor++;
 								}
+								cursor -= v.Length;
 
 								tkn = new Token () {
 									Type = TokenType.Number,
@@ -305,6 +312,7 @@ namespace il2c.Compiler.Parser
 									v += code [cursor];
 									cursor++;
 								}
+								cursor -= v.Length;
 
 								tkn = new Token () {
 									Type = TokenType.Identifier,
@@ -379,6 +387,8 @@ namespace il2c.Compiler.Parser
 					}
 				} else if (tkns [i].Type == TokenType.Whitespace) {
 					//Skip whitespace
+				} else if (tkns [i].Type == TokenType.Newline) {
+					//Skip newlines
 				} else
 					finalTkns.Add (tkns [i]);
 			}

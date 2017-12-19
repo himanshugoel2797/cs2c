@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using il2c.Compiler.AST;
 
 namespace il2c.Compiler.Parser
 {
@@ -13,43 +14,22 @@ namespace il2c.Compiler.Parser
 
 		private Queue<Token> tkn_q;
 
-		#region Lexer Case Handlers
-		private static bool UsingStHandler() {
+		private ProgramNode root;
 
-		}
-
-		private static bool UsingExHandler() {
-			//check if the statement fits the 'using ...' syntax, and generate the appropriate AST for it
-			return false;
-		}
-
-		private static bool IdentifierHandler() {
-			return false;
-		}
-
-		private static bool TRefHandler() {
-			IdentifierHandler ();
-		}
-
-		private static bool NamespaceTknHandler() {
-			return false;
-		}
-
-		private static bool NamespaceStHandler() {
-			while (NamespaceTknHandler ())
-				;
-			return true;
-		}
-
-		private static void ProgramHandler() {
-			UsingExHandler();
-			NamespaceStHandler ();
-		}
-		#endregion
-
-		public void Lex(Token[] tkns) {
+		public ProgramNode Lex(Token[] tkns) {
 			tkn_q = new Queue<Token> (tkns);
-			ProgramHandler ();
+			root = ProgramNode.Parse (this);
+			return root;
+		}
+
+		public int Count { get { return tkn_q.Count; } }
+
+		public Token Peek(){
+			return tkn_q.Peek ();
+		}
+
+		public Token Dequeue(){
+			return tkn_q.Dequeue ();
 		}
 	}
 }
