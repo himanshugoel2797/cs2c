@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1F5EA427-AFC7-4782-AB2A-2F9F6CBEE095}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>il2c.Compiler</RootNamespace>
+    <AssemblyName>il2c.Compiler</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="MyClass.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AST\Assembly.cs" />
+    <Compile Include="AST\Assemblies.cs" />
+    <Compile Include="AST\TypeDef.cs" />
+    <Compile Include="AST\TypeRef.cs" />
+    <Compile Include="AST\MethodDef.cs" />
+    <Compile Include="AST\FieldDef.cs" />
+    <Compile Include="AST\Visibility.cs" />
+    <Compile Include="AST\Argument.cs" />
+    <Compile Include="AST\NamedArgument.cs" />
+    <Compile Include="AST\AttributeDef.cs" />
+    <Compile Include="ASTBuilder.cs" />
+    <Compile Include="ICodeGenerator.cs" />
+    <Compile Include="C\CodeGenerator.cs" />
+    <Compile Include="Parser\Tokenizer.cs" />
+    <Compile Include="Parser\Lexer.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Reflection\" />
+    <Folder Include="AST\" />
+    <Folder Include="C\" />
+    <Folder Include="Parser\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Grammar.txt" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,31 @@
+﻿<Properties RefactoringSettings.EnableRefactorings="True" StartupItem="HelloWorld/HelloWorld.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MiniCLR.Compiler/FileIO.cs">
+    <Files>
+      <File FileName="miniclr_cs/Char.cs" Line="1" Column="1" />
+      <File FileName="miniclr_cs/String.cs" Line="1" Column="1" />
+      <File FileName="miniclr_cs/Console.cs" Line="1" Column="1" />
+      <File FileName="HelloWorld/Program.cs" Line="11" Column="3" />
+      <File FileName="miniclr_cs/ParamArrayAttribute.cs" Line="1" Column="1" />
+      <File FileName="miniclr_cs/Attribute.cs" Line="1" Column="1" />
+      <File FileName="miniclr_cs/Reflection/AssemblyTitle.cs" Line="1" Column="1" />
+      <File FileName="miniclr_cs/Type.cs" Line="19" Column="33" />
+      <File FileName="MiniCLR.Compiler/MyClass.cs" Line="12" Column="1" />
+      <File FileName="MiniCLR.Compiler/FileIO.cs" Line="18" Column="3" />
+      <File FileName="MiniCLR.Compiler/PE/PELoader.cs" Line="25" Column="4" />
+      <File FileName="MiniCLR.Compiler/MetadataType.cs" Line="17" Column="19" />
+      <File FileName="miniclr_cs/Runtime/InteropServices/OutAttribute.cs" Line="1" Column="1" />
+      <File FileName="miniclr_cs/Runtime/InteropServices/UnmanagedType.cs" Line="19" Column="17" />
+      <File FileName="miniclr_cs/Runtime/InteropServices/MarshalAsAttribute.cs" Line="9" Column="23" />
+      <File FileName="miniclr_cs/Runtime/InteropServices/DllImportAttribute.cs" Line="12" Column="14" />
+      <File FileName="miniclr_cs/Runtime/InteropServices/InAttribute.cs" Line="5" Column="38" />
+      <File FileName="MiniCLR.Compiler/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs" Line="2" Column="35" />
+      <File FileName="miniclr_cs/Runtime/Versioning/TargetFrameworkAttribute.cs" Line="3" Column="36" />
+      <File FileName="miniclr_cs/Array.cs" Line="10" Column="32" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
