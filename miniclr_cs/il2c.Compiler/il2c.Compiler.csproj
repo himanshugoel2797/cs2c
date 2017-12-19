@@ -45,6 +45,8 @@
     <Compile Include="AST\ITypeDef.cs" />
     <Compile Include="AST\ClassDefNode.cs" />
     <Compile Include="AST\StructDefNode.cs" />
+    <Compile Include="AST\EnumDefNode.cs" />
+    <Compile Include="AST\InterfaceDefNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace il2c.Compiler.AST
 {
-	public class StructDefNode : ITypeDef
+	public class EnumDefNode : ITypeDef
 	{
 		public string Identifier;
 
@@ -12,7 +12,7 @@ namespace il2c.Compiler.AST
 
 		public TypeDefType Type {
 			get {
-				return TypeDefType.Struct;
+				return TypeDefType.Enum;
 			}
 		}
 
@@ -21,22 +21,22 @@ namespace il2c.Compiler.AST
 		public static bool IsPresent(Lexer lex){
 			var tkn = lex.Peek ();
 
-			if (tkn.Type == TokenType.Keyword && tkn.Value == "struct")
+			if (tkn.Type == TokenType.Keyword && tkn.Value == "enum")
 				return true;
 
 			return false;
 		}
 
-		public static StructDefNode Parse(Lexer lex) {
-			StructDefNode n = new StructDefNode ();
+		public static EnumDefNode Parse(Lexer lex) {
+			EnumDefNode n = new EnumDefNode ();
 
-			lex.Dequeue ("struct");
+			lex.Dequeue ("enum");
 			var tkn = lex.Dequeue (TokenType.Identifier);
 			n.Identifier = tkn.Value;
 
 			lex.Dequeue (TokenType.LBrace);
-			//TODO: CLASS_STRUCT_DEFS
-			lex.Dequeue(TokenType.RBrace);
+			//TODO: ENUM_DEFS
+			lex.Dequeue (TokenType.RBrace);
 
 			return n;
 		}

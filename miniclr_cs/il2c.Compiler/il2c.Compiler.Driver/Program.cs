@@ -11,7 +11,11 @@ namespace il2c.Compiler.Driver
 			using System; 
 			using il2c.Compiler.Parser; 
 			//Next
-			namespace il2c.Compiler.Driver { 
+			namespace il2c.Compiler.Driver {
+	public class { }
+	interface { }
+	struct C { }
+	public enum B { }
 }";
 
 			Tokenizer tknzr = new Tokenizer ();
@@ -19,12 +23,12 @@ namespace il2c.Compiler.Driver
 			ExceptionProvider.SetCode (code);
 
 			var tkns = tknzr.Tokenize (code);
-			var root = lexer.Lex (tkns);
-
 			foreach (Token t in tkns) {
 				Console.WriteLine (t.ToString ());
 			}
 
+
+			var root = lexer.Lex (tkns);
 			Console.WriteLine ("AST:\n\n\n");
 			Console.WriteLine (root);
 		}

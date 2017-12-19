@@ -25,9 +25,9 @@ namespace il2c.Compiler.AST
 		public static UsingNode Parse(Lexer lex){
 			UsingNode n = new UsingNode ();
 
-			lex.DequeueIf ("using");
+			lex.Dequeue ("using");
 			n.Identifier = TRefNode.Parse (lex);
-			lex.DequeueIf (TokenType.Semi);
+			lex.Dequeue (TokenType.Semi);
 
 			return n;
 		}
