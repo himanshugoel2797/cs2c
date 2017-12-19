@@ -16,6 +16,7 @@ namespace il2c.Compiler.Driver
 
 			Tokenizer tknzr = new Tokenizer ();
 			Lexer lexer = new Lexer ();
+			ExceptionProvider.SetCode (code);
 
 			var tkns = tknzr.Tokenize (code);
 			var root = lexer.Lex (tkns);

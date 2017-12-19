@@ -16,7 +16,7 @@ namespace il2c.Compiler.AST
 		public static TRefNode Parse(Lexer lex){
 			TRefNode r = new TRefNode ();
 			if (lex.Peek ().Type != TokenType.Identifier)
-				throw new Exception ("Syntax Error: Expected Identifier");
+				throw ExceptionProvider.Syntax( lex.Peek().Cursor, "Expected identifier.");
 
 			Token t = lex.Dequeue ();
 			r.Identifier = t.Value;

@@ -23,7 +23,7 @@ namespace il2c.Compiler.AST
 		public static ProgramNode Parse(Lexer lex){
 			ProgramNode n = new ProgramNode ();
 
-			while (UsingNode.IsUsing (lex))
+			while (UsingNode.IsPresent (lex))
 				n.Using.Add (UsingNode.Parse (lex));
 
 			n.Namespace = NamespaceNode.Parse (lex);

@@ -13,7 +13,7 @@ namespace il2c.Compiler.AST
 			return string.Format ("[UsingNode]\n" + Identifier.ToString());
 		}
 
-		public static bool IsUsing(Lexer lex){
+		public static bool IsPresent(Lexer lex){
 			Token t = lex.Peek ();
 
 			if (t.Type == TokenType.Keyword && t.Value == "using")
@@ -23,18 +23,11 @@ namespace il2c.Compiler.AST
 		}
 
 		public static UsingNode Parse(Lexer lex){
-			if (!IsUsing (lex))
-				throw new Exception ("Syntax Error: Expected Using statement");
-
 			UsingNode n = new UsingNode ();
-			lex.Dequeue ();
 
+			lex.DequeueIf ("using");
 			n.Identifier = TRefNode.Parse (lex);
-
-			if (lex.Peek ().Type != TokenType.Semi)
-				throw new Exception ("Syntax Error: Expected Semicolon");
-
-			lex.Dequeue ();	//Remove the semicolon
+			lex.DequeueIf (TokenType.Semi);
 
 			return n;
 		}

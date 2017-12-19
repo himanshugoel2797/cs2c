@@ -69,6 +69,7 @@ namespace il2c.Compiler.Parser
 	public struct Token {
 		public TokenType Type { get; set; }
 		public string Value { get; set; }
+		public int Cursor { get; set; }
 
 		public override string ToString ()
 		{
@@ -246,7 +247,8 @@ namespace il2c.Compiler.Parser
 			List<Token> tkns = new List<Token> ();
 			Token tkn = new Token () {
 				Type = TokenType.Apos,
-				Value = ""
+				Value = "",
+				Cursor = 0,
 			};
 
 			int cursor = 0;
@@ -260,7 +262,8 @@ namespace il2c.Compiler.Parser
 					cursor -= ws_v.Length;
 					tkn = new Token () {
 						Type = TokenType.Whitespace,
-						Value = ws_v
+						Value = ws_v,
+						Cursor = cursor
 					};
 				} else {
 					bool basicMatchFnd = false;
@@ -268,7 +271,8 @@ namespace il2c.Compiler.Parser
 						if (Match (code, cursor, patterns [i])) {
 							tkn = new Token () {
 								Type = (TokenType)i,
-								Value = patterns [i]
+								Value = patterns [i],
+								Cursor = cursor
 							};
 							basicMatchFnd = true;
 							break;
@@ -282,7 +286,8 @@ namespace il2c.Compiler.Parser
 							if (Match (code, cursor, keywords [i])) {
 								tkn = new Token () {
 									Type = TokenType.Keyword,
-									Value = keywords [i]
+									Value = keywords [i],
+									Cursor = cursor
 								};
 
 								keywordMatchFnd = true;
@@ -303,7 +308,8 @@ namespace il2c.Compiler.Parser
 
 								tkn = new Token () {
 									Type = TokenType.Number,
-									Value = v
+									Value = v,
+									Cursor = cursor
 								};
 							} else {
 								//Identifier
@@ -316,7 +322,8 @@ namespace il2c.Compiler.Parser
 
 								tkn = new Token () {
 									Type = TokenType.Identifier,
-									Value = v
+									Value = v,
+									Cursor = cursor
 								};
 							}
 						}
@@ -329,7 +336,9 @@ namespace il2c.Compiler.Parser
 
 			List<Token> finalTkns = new List<Token> ();
 			for (int i = 0; i < tkns.Count; i++) {
+				int cur = tkns [i].Cursor;
 				if (tkns [i].Type == TokenType.Quote) {
+
 					string v = "\"";
 					i++;
 
@@ -345,7 +354,8 @@ namespace il2c.Compiler.Parser
 
 					Token t = new Token () {
 						Type = TokenType.String,
-						Value = v
+						Value = v,
+						Cursor = cur
 					};
 					finalTkns.Add (t);
 				} else if (tkns [i].Type == TokenType.Apos) {
@@ -364,7 +374,8 @@ namespace il2c.Compiler.Parser
 
 					Token t = new Token () {
 						Type = TokenType.CharString,
-						Value = v
+						Value = v,
+						Cursor = cur
 					};
 					finalTkns.Add (t);
 				} else if (tkns [i].Type == TokenType.LineComment) {
