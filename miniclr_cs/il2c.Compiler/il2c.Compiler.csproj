@@ -51,6 +51,8 @@
     <Compile Include="AST\GenericParamNode.cs" />
     <Compile Include="AST\ClassIdentNode.cs" />
     <Compile Include="AST\ClassInheritNode.cs" />
+    <Compile Include="AST\EnumEntryNode.cs" />
+    <Compile Include="AST\ConstExprNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

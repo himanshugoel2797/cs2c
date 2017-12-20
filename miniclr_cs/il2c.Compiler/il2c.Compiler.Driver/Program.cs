@@ -12,10 +12,10 @@ namespace il2c.Compiler.Driver
 			using il2c.Compiler.Parser; 
 			//Next
 			namespace il2c.Compiler.Driver {
-	public class { }
-	interface { }
-	struct C { }
-	public enum B { }
+	public class A<C,G> where C : Test where G : Test2 { }
+	interface B : D { }
+	struct C<A> : D where A : Test { }
+	public enum B { A, B, C, D }
 }";
 
 			Tokenizer tknzr = new Tokenizer ();

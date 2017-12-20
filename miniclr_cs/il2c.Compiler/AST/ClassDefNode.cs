@@ -1,5 +1,6 @@
 ﻿using System;
 using il2c.Compiler.Parser;
+using System.Collections.Generic;
 
 namespace il2c.Compiler.AST
 {
@@ -8,6 +9,7 @@ namespace il2c.Compiler.AST
 		public bool IsAbstract;
 		public ClassIdentNode Identifier;
 		public ClassInheritNode Parents;
+		public List<GenericConstraintNode> Constraints = new List<GenericConstraintNode>();
 
 		#region ITypeDef implementation
 
@@ -41,8 +43,8 @@ namespace il2c.Compiler.AST
 				n.Parents = ClassInheritNode.Parse (lex);
 			}
 
-			if (GenericConstraintNode.IsPresent (lex)) {
-				//TODO: GENERIC_CONSTRAINT
+			while (GenericConstraintNode.IsPresent (lex)) {
+				n.Constraints.Add (GenericConstraintNode.Parse (lex));
 			}
 
 			lex.Dequeue (TokenType.LBrace);

@@ -7,6 +7,7 @@ namespace il2c.Compiler.AST
 	public class EnumDefNode : ITypeDef
 	{
 		public string Identifier;
+		public List<EnumEntryNode> Entries = new List<EnumEntryNode> ();
 
 		#region ITypeDef implementation
 
@@ -35,7 +36,18 @@ namespace il2c.Compiler.AST
 			n.Identifier = tkn.Value;
 
 			lex.Dequeue (TokenType.LBrace);
-			//TODO: ENUM_DEFS
+			bool isLast = false;
+			while (EnumEntryNode.IsPresent (lex)) {
+				if (isLast) {
+					throw ExceptionProvider.Syntax (tkn.Cursor, "Expected ',' or end of enum");
+				}
+
+				n.Entries.Add (EnumEntryNode.Parse (lex));
+
+				if (!lex.DequeueIf (TokenType.Comma, out tkn)) {
+					isLast = true;
+				}
+			}
 			lex.Dequeue (TokenType.RBrace);
 
 			return n;

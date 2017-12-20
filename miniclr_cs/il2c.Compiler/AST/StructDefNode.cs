@@ -8,6 +8,7 @@ namespace il2c.Compiler.AST
 	{
 		public ClassIdentNode Identifier;
 		public ClassInheritNode Parents;
+		public List<GenericConstraintNode> Constraints = new List<GenericConstraintNode>();
 
 		#region ITypeDef implementation
 
@@ -31,15 +32,15 @@ namespace il2c.Compiler.AST
 		public static StructDefNode Parse(Lexer lex) {
 			StructDefNode n = new StructDefNode ();
 
-			Token tkn;
 			lex.Dequeue ("struct");
 			n.Identifier = ClassIdentNode.Parse (lex);
 			if (ClassInheritNode.IsPresent(lex)) {
 				n.Parents = ClassInheritNode.Parse (lex);
 			}
 
-			if (GenericConstraintNode.IsPresent (lex)) {
-				//TODO: GENERIC_CONSTRAINT
+
+			while (GenericConstraintNode.IsPresent (lex)) {
+				n.Constraints.Add (GenericConstraintNode.Parse (lex));
 			}
 
 			lex.Dequeue (TokenType.LBrace);
