@@ -6,7 +6,8 @@ namespace il2c.Compiler.AST
 	public class ClassDefNode : ITypeDef
 	{
 		public bool IsAbstract;
-		public TRefNode ParentClass;
+		public ClassIdentNode Identifier;
+		public ClassInheritNode Parents;
 
 		#region ITypeDef implementation
 
@@ -35,9 +36,13 @@ namespace il2c.Compiler.AST
 			Token tkn;
 			n.IsAbstract = lex.DequeueIf ("abstract", out tkn);
 			lex.Dequeue ("class");
-			//TODO: CLASS_IDENT
-			if (lex.DequeueIf (TokenType.Colon, out tkn)) {
-				//TODO: CLASS_INHERIT
+			n.Identifier = ClassIdentNode.Parse (lex);
+			if (ClassInheritNode.IsPresent(lex)) {
+				n.Parents = ClassInheritNode.Parse (lex);
+			}
+
+			if (GenericConstraintNode.IsPresent (lex)) {
+				//TODO: GENERIC_CONSTRAINT
 			}
 
 			lex.Dequeue (TokenType.LBrace);

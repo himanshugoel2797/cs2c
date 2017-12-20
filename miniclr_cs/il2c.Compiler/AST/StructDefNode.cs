@@ -6,7 +6,8 @@ namespace il2c.Compiler.AST
 {
 	public class StructDefNode : ITypeDef
 	{
-		public string Identifier;
+		public ClassIdentNode Identifier;
+		public ClassInheritNode Parents;
 
 		#region ITypeDef implementation
 
@@ -30,14 +31,20 @@ namespace il2c.Compiler.AST
 		public static StructDefNode Parse(Lexer lex) {
 			StructDefNode n = new StructDefNode ();
 
+			Token tkn;
 			lex.Dequeue ("struct");
-			var tkn = lex.Dequeue (TokenType.Identifier);
-			n.Identifier = tkn.Value;
+			n.Identifier = ClassIdentNode.Parse (lex);
+			if (ClassInheritNode.IsPresent(lex)) {
+				n.Parents = ClassInheritNode.Parse (lex);
+			}
+
+			if (GenericConstraintNode.IsPresent (lex)) {
+				//TODO: GENERIC_CONSTRAINT
+			}
 
 			lex.Dequeue (TokenType.LBrace);
 			//TODO: CLASS_STRUCT_DEFS
-			lex.Dequeue(TokenType.RBrace);
-
+			lex.Dequeue (TokenType.RBrace);
 			return n;
 		}
 	}

@@ -6,6 +6,8 @@ namespace il2c.Compiler.AST
 {
 	public class InterfaceDefNode : ITypeDef
 	{
+		public ClassIdentNode Identifier;
+		public ClassInheritNode Parents;
 
 		#region ITypeDef implementation
 
@@ -30,11 +32,15 @@ namespace il2c.Compiler.AST
 			InterfaceDefNode n = new InterfaceDefNode ();
 
 			lex.Dequeue ("interface");
-			//TODO: CLASS_IDENT
+			n.Identifier = ClassIdentNode.Parse (lex);
 
 			Token tkn;
-			if (lex.DequeueIf (TokenType.Colon, out tkn)) {
-				//TODO: CLASS_INHERIT
+			if (ClassInheritNode.IsPresent(lex)) {
+				n.Parents = ClassInheritNode.Parse (lex);
+			}
+				
+			if (GenericConstraintNode.IsPresent (lex)) {
+				//TODO: GENERIC_CONSTRAINT
 			}
 
 			lex.Dequeue (TokenType.LBrace);
