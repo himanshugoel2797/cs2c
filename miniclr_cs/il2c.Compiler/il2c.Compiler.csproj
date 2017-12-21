@@ -53,6 +53,12 @@
     <Compile Include="AST\ClassInheritNode.cs" />
     <Compile Include="AST\EnumEntryNode.cs" />
     <Compile Include="AST\ConstExprNode.cs" />
+    <Compile Include="AST\InterfaceEntryNode.cs" />
+    <Compile Include="AST\GenericConstraintTypeSet.cs" />
+    <Compile Include="AST\BuiltinTypeSet.cs" />
+    <Compile Include="AST\IInterfaceEntryType.cs" />
+    <Compile Include="AST\InterfaceFunctionNode.cs" />
+    <Compile Include="AST\InterfacePropertyNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

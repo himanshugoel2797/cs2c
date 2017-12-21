@@ -8,6 +8,7 @@ namespace il2c.Compiler.AST
 	{
 		public string Parameter;
 		public List<TRefNode> Constraints = new List<TRefNode> ();
+		public List<string> KeywordConstraints = new List<string>();
 
 		public static bool IsPresent(Lexer lex) {
 			var tkn = lex.Peek ();
@@ -26,7 +27,12 @@ namespace il2c.Compiler.AST
 
 			lex.Dequeue (TokenType.Colon);
 			do {
-				n.Constraints.Add(TRefNode.Parse(lex));
+				if (GenericConstraintTypeSet.Match(lex)){
+					lex.Dequeue();	
+					n.KeywordConstraints.Add(tkn.Value);
+				} else
+					n.Constraints.Add(TRefNode.Parse(lex));
+				
 			} while(lex.DequeueIf (TokenType.Comma, out tkn));
 
 			return n;

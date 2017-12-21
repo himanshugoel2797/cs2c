@@ -1,29 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
 using il2c.Compiler.Parser;
 
 namespace il2c.Compiler.AST
 {
 	public class TRefNode
 	{
-		public string Identifier;
-		public TRefNode Child;
+		public List<string> Identifier = new List<string>();
 
-		public override string ToString ()
-		{
-			return string.Format ("[TRefNode]" + Identifier + ((Child == null)?"":("\n" + Child.ToString())));
+		public static bool IsPresent(Lexer lex) {
+			return (lex.Peek ().Type == TokenType.Identifier)
+				;
 		}
 
 		public static TRefNode Parse(Lexer lex){
 			TRefNode r = new TRefNode ();
-			if (lex.Peek ().Type != TokenType.Identifier)
-				throw ExceptionProvider.Syntax( lex.Peek().Cursor, "Expected identifier.");
 
-			Token t = lex.Dequeue ();
-			r.Identifier = t.Value;
+			Token t = lex.Dequeue (TokenType.Identifier);
+			r.Identifier.Add(t.Value);
 
-			if(lex.Peek().Type == TokenType.Dot){
-				lex.Dequeue ();
-				r.Child = Parse (lex);
+			while(lex.DequeueIf(TokenType.Dot, out t)){
+				t = lex.Dequeue (TokenType.Identifier);
+				r.Identifier.Add (t.Value);;
 			}
 
 			return r;

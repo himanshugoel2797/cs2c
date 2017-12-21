@@ -9,7 +9,7 @@ namespace il2c.Compiler.AST
 		public ClassIdentNode Identifier;
 		public ClassInheritNode Parents;
 		public List<GenericConstraintNode> Constraints = new List<GenericConstraintNode>();
-
+		public List<InterfaceEntryNode> Entries = new List<InterfaceEntryNode>();
 		#region ITypeDef implementation
 
 		public TypeDefType Type {
@@ -44,7 +44,9 @@ namespace il2c.Compiler.AST
 			}
 
 			lex.Dequeue (TokenType.LBrace);
-			//TODO: INTERFACE_DEFS
+			while (InterfaceEntryNode.IsPresent (lex)) {
+				n.Entries.Add (InterfaceEntryNode.Parse (lex));
+			}
 			lex.Dequeue (TokenType.RBrace);
 
 			return n;

@@ -187,6 +187,7 @@ namespace il2c.Compiler.Parser
 			"long",
 			"nameof",
 			"namespace",
+			"new()",
 			"new",
 			"null",
 			"object",
