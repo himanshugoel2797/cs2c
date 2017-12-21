@@ -205,6 +205,7 @@ namespace il2c.Compiler.Parser
 			"return",
 			"sbyte",
 			"sealed",
+			"set",
 			"short",
 			"sizeof",
 			"stackalloc",

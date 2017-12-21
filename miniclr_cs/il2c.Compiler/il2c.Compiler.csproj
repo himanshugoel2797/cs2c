@@ -59,6 +59,7 @@
     <Compile Include="AST\IInterfaceEntryType.cs" />
     <Compile Include="AST\InterfaceFunctionNode.cs" />
     <Compile Include="AST\InterfacePropertyNode.cs" />
+    <Compile Include="AST\VisibilitySet.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

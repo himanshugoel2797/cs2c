@@ -13,7 +13,7 @@ namespace il2c.Compiler.Driver
 			//Next
 			namespace il2c.Compiler.Driver {
 	public class A<C,G> where C : Test where G : Test2 { }
-	interface B : D { }
+	interface B : D { int TestProperty { get; private set; } }
 	struct C<A> : D where A : Test { }
 	public enum B { A, B, C, D }
 }";

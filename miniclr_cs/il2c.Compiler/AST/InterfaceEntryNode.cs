@@ -28,7 +28,6 @@ namespace il2c.Compiler.AST
 					return true;
 
 				if (BuiltinTypeSet.Match (lex)) {
-					lex.Dequeue ();
 					return true;
 				}
 			}
@@ -48,10 +47,11 @@ namespace il2c.Compiler.AST
 
 			if (TRefNode.IsPresent (lex))
 				n.TypeIdentifier = TRefNode.Parse (lex);
-			else {
+			else if (BuiltinTypeSet.Match (lex)) {
 				tkn = lex.Dequeue ();
 				n.KeywordTypeIdentifier = tkn.Value;
-			}
+			} else
+				throw ExceptionProvider.Syntax (tkn.Cursor, "Unrecognized type name");
 
 			if (GenericParamNode.IsPresent (lex))
 				n.GenericParams = GenericParamNode.Parse (lex);
