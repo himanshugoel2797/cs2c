@@ -6,7 +6,7 @@ namespace il2c.Compiler.AST
 {
 	public class GenericParamNode
 	{
-		public List<string> Parameters = new List<string> ();
+		public List<ClassIdentNode> Parameters = new List<ClassIdentNode> ();
 
 		public static bool IsPresent(Lexer lex){
 			return (lex.Peek ().Type == TokenType.Less);
@@ -18,8 +18,7 @@ namespace il2c.Compiler.AST
 			lex.Dequeue (TokenType.Less);
 			Token tkn;
 			do {
-				tkn = lex.Dequeue (TokenType.Identifier);
-				n.Parameters.Add(tkn.Value);
+				n.Parameters.Add(ClassIdentNode.Parse(lex));
 			} while(lex.DequeueIf (TokenType.Comma, out tkn));
 			lex.Dequeue (TokenType.Greater);
 
@@ -27,4 +26,6 @@ namespace il2c.Compiler.AST
 		}
 	}
 }
+
+//TODO: Update GENERIC_CONSTRAINT_SUB, TYPES, FUNCTION_ARGUMENT_DECL, ATTRIBUTE_DEF, INTERFACE_ST, CLASS_ST
 

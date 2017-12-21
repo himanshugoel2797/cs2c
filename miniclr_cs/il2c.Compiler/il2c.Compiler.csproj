@@ -60,6 +60,8 @@
     <Compile Include="AST\InterfaceFunctionNode.cs" />
     <Compile Include="AST\InterfacePropertyNode.cs" />
     <Compile Include="AST\VisibilitySet.cs" />
+    <Compile Include="AST\TypeNode.cs" />
+    <Compile Include="AST\FunctionArgumentDeclNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -9,8 +9,7 @@ namespace il2c.Compiler.AST
 		public bool IsVirtual;
 		public bool IsUnsafe;
 
-		public TRefNode TypeIdentifier;
-		public string KeywordTypeIdentifier;
+		public TypeNode TypeName;
 
 		public GenericParamNode GenericParams;
 		public string Identifier;
@@ -26,13 +25,9 @@ namespace il2c.Compiler.AST
 
 				if (tkn.Value == "unsafe")
 					return true;
-
-				if (BuiltinTypeSet.Match (lex)) {
-					return true;
-				}
 			}
 
-			if (TRefNode.IsPresent (lex))
+			if (TypeNode.IsPresent (lex))
 				return true;
 
 			return false;
@@ -45,13 +40,7 @@ namespace il2c.Compiler.AST
 			n.IsVirtual = lex.DequeueIf ("virtual", out tkn);
 			n.IsUnsafe = lex.DequeueIf ("unsafe", out tkn);
 
-			if (TRefNode.IsPresent (lex))
-				n.TypeIdentifier = TRefNode.Parse (lex);
-			else if (BuiltinTypeSet.Match (lex)) {
-				tkn = lex.Dequeue ();
-				n.KeywordTypeIdentifier = tkn.Value;
-			} else
-				throw ExceptionProvider.Syntax (tkn.Cursor, "Unrecognized type name");
+			n.TypeName = TypeNode.Parse (lex);
 
 			if (GenericParamNode.IsPresent (lex))
 				n.GenericParams = GenericParamNode.Parse (lex);

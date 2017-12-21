@@ -25,7 +25,7 @@ namespace il2c.Compiler.AST
 			InterfaceFunctionNode n = new InterfaceFunctionNode ();
 
 			lex.Dequeue (TokenType.LParen);
-
+			//TODO: Add FUNCTION_ARGUMENT_DECL parsing
 			lex.Dequeue (TokenType.RParen);
 
 			return n;
